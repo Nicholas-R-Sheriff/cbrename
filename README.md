@@ -55,7 +55,7 @@ These settings can be provided interactively, or passed as arguments when runnin
 
 ### Interactive Mode
 
-Run the script without any arguments to enter the interactive mode:
+Run the script without any arguments to access the interactive mode:
 
 ```bash
 
@@ -71,7 +71,7 @@ You can also pass these settings as arguments when running the script:
 
 ```bash
 
-python conbaserename.py--folder_path./path_to_folder--regex_patternregex_pattern_here--custom_prefixmy_prefix
+python conbaserename.py --folder_path./path_to_folder --regex_patternregex_pattern_here --custom_prefixmy_prefix
 
 ```
 
