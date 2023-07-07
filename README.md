@@ -27,7 +27,8 @@ It is especially useful when dealing with files that contain dates or other stan
 
 The Conbase Rename script employs regular expressions to search and extract specific patterns from the content of the files in the specified directory.
 
-For instance, I created this script because I had a folder containing a group of bills named after unclear alphanumeric strings, but I needed to sort them by date, from the older to the newer, so I picked a line which was similar for each of them "Periodo di fatturazione: dal [date in dd-mm-YYYY format] al [date in dd-mm-YYYY format]" (which means "Billing period: from [date in dd-mm-YYYY format] to [date in dd-mm-YYYY format]" in Italian) and used the following regex to match the line for each file: `Periodo di fatturazione: dal (\d{2}/\d{2}/\d{4}) al (\d{2}/\d{2}/\d{4})`. I eventually stumbled upon another similar group of bills which for some reason would not match that regex, so I had to use a more complex one: `Periodo di fatturazione:\s*dal\s*(\d{2}/\d{2}/\d{4})\s*al\s*(\d{2}/\d{2}/\d{4})`
+I created this script because I had a folder containing a group of bills named after unclear alphanumeric strings, but I needed to sort them by date, from the older to the newer, so I picked a line which was similar for each of them "Periodo di fatturazione: dal [date in dd-mm-YYYY format] al [date in dd-mm-YYYY format]" (which means "Billing period: from [date in dd-mm-YYYY format] to [date in dd-mm-YYYY format]" in Italian) and used the following regex to match the line for each file: `Periodo di fatturazione: dal (\d{2}/\d{2}/\d{4}) al (\d{2}/\d{2}/\d{4})`.
+I eventually stumbled upon another similar group of bills which for some reason would not match that regex, so I had to use a more complex one: `Periodo di fatturazione:\s*dal\s*(\d{2}/\d{2}/\d{4})\s*al\s*(\d{2}/\d{2}/\d{4})`
 
 For instance, if you need to extract a date interval in the format dd/mm/yyyy separated by a hyphen, you can use the following regex pattern:
 
@@ -39,11 +40,11 @@ For instance, if you need to extract a date interval in the format dd/mm/yyyy se
 
 Here, `(\d{2}/\d{2}/\d{4})` captures the first date, and the second set of parentheses captures the second date. The hyphen - in the middle is a delimiter between the two dates.
 
-When a match is found, the first and second dates are returned as a tuple by the `extract_date_interval` function. If no match is found, the function returns None.
+When a match is found, the first and second dates are returned as a tuple by the `extract_date_interval` function. If no match is found, the function returns 'None'.
 
-The script then uses these dates to rename the file with the help of the `rename_file` function. This function takes three arguments: the file path, the date interval (start and end dates), and a custom prefix for the new file name.
+The script then uses these dates to rename the file relying on the `rename_file` function. This function takes three arguments: the file path, the date interval (start and end dates), and a custom prefix for the new file name.
 
-The renaming process follows the format "prefix-startdate-enddate.file_ext", where the start and end dates are in the "YYYYMMDD" format.
+The result follows the format "prefix-startdate-enddate.file_ext", where the start and end dates are in the "YYYYMMDD" format.
 
 ## Usage
 
